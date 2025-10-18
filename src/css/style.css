@@ -166,7 +166,6 @@ p {
 }
 
 /* MEDIA  */
-
 /* Estilos responsivos */
 @media (max-width: 600px) {
     body {
@@ -202,12 +201,10 @@ p {
         font-size: 1em;
     }
 
-    /* Adaptações para a seção .portfolio em telas pequenas */
     .portfolio {
-        height: 360px; /* Reduz a altura do container do portfólio em telas menores */
-        /* display: flex; flex-direction: column; justify-content: flex-end; align-items: center; overflow: hidden; */
-        /* Essas propriedades já estão no _portfolio.css e serão herdadas,
-           não precisam ser repetidas aqui a menos que queira mudar o comportamento */
+        height: auto;
+
+        padding: 0 15px;
     }
 
     .portfolio h2 {
@@ -216,52 +213,50 @@ p {
     }
 
     .gallery {
-        display: flex;
-        gap: 10px;
-        padding-left: 15px;
-        padding-right: 15px;
-        /* As propriedades overflow-x, -webkit-overflow-scrolling, scroll-snap-type,
-           margin-top, width, box-sizing, flex-grow, min-height
-           já estão no _portfolio.css e serão herdadas. */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        padding-left: 0;
+        padding-right: 0;
+
+        overflow-x: hidden;
     }
+
+    .gallery::-webkit-scrollbar,
+    .gallery::-webkit-scrollbar-thumb {
+        display: none;
+        height: 0;
+    }
+
 
     .portfolio-item {
-        width: 230px; /* Mantém a largura reduzida dos itens */
-        height: 100%; /* <--- IMPORTANTE: Continua ocupando 100% da altura da galeria (que é flexível) */
-    }
-
-    /* Estilos da barra de rolagem horizontal personalizada para mobile */
-    .gallery::-webkit-scrollbar {
-        height: 6px; /* Altura da barra de rolagem em telas menores */
+        width: 100%;
+        height: auto;
     }
 
     .button.view-more {
-        /* As propriedades background-color, color, margin-top, margin-bottom
-           já estão no _portfolio.css. Ajustamos a altura fixa para mobile. */
-        height: 40px; /* <--- Altura fixa menor para o botão em telas pequenas */
-        line-height: 40px; /* <--- Centraliza o texto verticalmente */
-        padding: 0 15px; /* <--- Padding ajustado para a nova altura */
-        font-size: 0.9em; /* <--- Fonte um pouco menor para o botão */
+        height: 40px;
+        line-height: 40px;
+        padding: 0 15px;
+        font-size: 0.9em;
         width: 100%;
     }
 }
 
 /* Portfolio  */
-
-/* --- Seção de Portfólio --- */
+/* --- Seção de Portfólio (Catálogo) --- */
 .portfolio {
     width: 100%;
-    /* background-color: #3a4a5a; */
-    height: 400px; /* Altura fixa do container do portfólio */
+    height: auto;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding-bottom: 0;
+    padding: 0 20px;
+    box-sizing: border-box;
 
     display: flex;
-    flex-direction: column; /* Organiza os filhos em coluna */
-    justify-content: flex-end; /* Alinha o conteúdo ao final (parte inferior) do container */
-    align-items: center; /* Centraliza horizontalmente o conteúdo */
-    overflow: hidden; /* <--- Importante: Esconde qualquer barra de rolagem vertical ou horizontal do próprio .portfolio */
+    flex-direction: column;
+    align-items: center;
+    overflow: visible;
 }
 
 .portfolio h2 {
@@ -269,56 +264,30 @@ p {
 }
 
 .gallery {
-    display: flex; /* Garante que os itens fiquem em linha (esquerda para direita) */
-    overflow-x: auto; /* <--- Barra de rolagem HORIZONTAL ativada */
-    overflow-y: hidden; /* <--- Garante que não haja barra de rolagem vertical dentro da galeria */
-    -webkit-overflow-scrolling: touch;
-    gap: 10px; /* Pequeno espaçamento de 10px entre os itens */
-    padding-bottom: 5px; /* Adiciona um padding para a barra de rolagem não cobrir o conteúdo */
-    margin-bottom: 3px;
-    scroll-snap-type: x mandatory;
+    /* CONFIGURAÇÃO PARA CATÁLOGO VERTICAL DE 2 COLUNAS */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    overflow-x: hidden;
 
-    margin-top: auto; /* Empurra a galeria para o topo restante */
-    width: 100%; /* Garante que a galeria ocupe a largura total disponível */
-    padding-left: 20px; /* Para que o primeiro item não fique colado na borda esquerda */
-    padding-right: 20px; /* Para que o último item não fique colado na borda direita */
-    box-sizing: border-box; /* Garante que padding não adicione largura extra */
-    flex-grow: 1; /* <--- Adicionado: Permite que a galeria ocupe o espaço vertical restante */
-    /* Altura da galeria será flexível para preencher o espaço */
-    min-height: 0; /* Permite que flex-grow funcione corretamente */
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 20px;
 }
-
-/* Esconde a barra de rolagem para um visual mais limpo (opcional) */
-.gallery::-webkit-scrollbar {
-    height: 8px; /* <--- Espessura fixa da barra de rolagem horizontal */
-    background-color: transparent;
-}
-
-.gallery::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.01);
-    border-radius: 10px;
-    border: 2px solid transparent;
-    background-clip: padding-box;
-}
-
-.gallery::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
 
 .portfolio-item {
-    flex-shrink: 0;
-    width: 250px; /* Largura dos itens */
-    height: 100%; /* <--- IMPORTANTE: Faz o item ocupar 100% da altura da .gallery */
+    width: 100%;
+    height: auto;
+
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+
     background-color: #3a4a5a;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    scroll-snap-align: start; /* Alinha o início do item ao ponto de rolagem */
 }
 
 .portfolio-item:hover {
@@ -327,23 +296,44 @@ p {
 
 .portfolio-item img {
     width: 100%;
-    height: 100%;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
+    border-radius: 8px 8px 0 0;
 }
 
-.portfolio-item p {
+/* TÍTULO E PREÇO */
+.portfolio-item .info {
+    padding: 10px 10px 15px 10px;
+    text-align: center;
+}
+
+.portfolio-item h3 {
+    margin: 0 0 5px 0;
+    color: #ffffff;
+    font-size: 1.1em;
+}
+
+.portfolio-item p.price {
+    margin: 0;
+    color: #f0c14b;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.portfolio-item p:not(.price) {
     display: none;
 }
+
 
 .button.view-more {
     background-color: #4a6a8a;
     color: #fff;
     width: 100%;
-    margin-top: 10px; /* Mantém um pequeno espaço entre a galeria e o botão */
-    margin-bottom: 0px; /* Garante que esteja "colado" na parte inferior do portfolio */
-    height: 50px; /* <--- Adicionado: Altura fixa para o botão */
-    line-height: 50px; /* <--- Ajustado: Centraliza o texto verticalmente se a altura mudar */
-    padding: 0 20px; /* <--- Ajustado: Padding para a altura fixa */
+    margin-top: 20px;
+    margin-bottom: 0px;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 20px;
 }
 
 .button.view-more:hover {
