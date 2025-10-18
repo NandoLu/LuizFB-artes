@@ -33,12 +33,10 @@
         font-size: 1em;
     }
 
-    /* Adaptações para a seção .portfolio em telas pequenas */
     .portfolio {
-        height: 360px; /* Reduz a altura do container do portfólio em telas menores */
-        /* display: flex; flex-direction: column; justify-content: flex-end; align-items: center; overflow: hidden; */
-        /* Essas propriedades já estão no _portfolio.css e serão herdadas,
-           não precisam ser repetidas aqui a menos que queira mudar o comportamento */
+        height: auto;
+
+        padding: 0 15px;
     }
 
     .portfolio h2 {
@@ -47,32 +45,32 @@
     }
 
     .gallery {
-        display: flex;
-        gap: 10px;
-        padding-left: 15px;
-        padding-right: 15px;
-        /* As propriedades overflow-x, -webkit-overflow-scrolling, scroll-snap-type,
-           margin-top, width, box-sizing, flex-grow, min-height
-           já estão no _portfolio.css e serão herdadas. */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        padding-left: 0;
+        padding-right: 0;
+
+        overflow-x: hidden;
     }
+
+    .gallery::-webkit-scrollbar,
+    .gallery::-webkit-scrollbar-thumb {
+        display: none;
+        height: 0;
+    }
+
 
     .portfolio-item {
-        width: 230px; /* Mantém a largura reduzida dos itens */
-        height: 100%; /* <--- IMPORTANTE: Continua ocupando 100% da altura da galeria (que é flexível) */
-    }
-
-    /* Estilos da barra de rolagem horizontal personalizada para mobile */
-    .gallery::-webkit-scrollbar {
-        height: 6px; /* Altura da barra de rolagem em telas menores */
+        width: 100%;
+        height: auto;
     }
 
     .button.view-more {
-        /* As propriedades background-color, color, margin-top, margin-bottom
-           já estão no _portfolio.css. Ajustamos a altura fixa para mobile. */
-        height: 40px; /* <--- Altura fixa menor para o botão em telas pequenas */
-        line-height: 40px; /* <--- Centraliza o texto verticalmente */
-        padding: 0 15px; /* <--- Padding ajustado para a nova altura */
-        font-size: 0.9em; /* <--- Fonte um pouco menor para o botão */
+        height: 40px;
+        line-height: 40px;
+        padding: 0 15px;
+        font-size: 0.9em;
         width: 100%;
     }
 }
